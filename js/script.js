@@ -16,18 +16,8 @@ let activityCoeff = 1.2;
 
 inputFields.forEach(input => {
 	input.addEventListener('change', () => {
-		if (age.value != 0 || height.value != 0 || weight.value != 0) {
-			resetButton.disabled = false;
-		} else {
-			resetButton.disabled = true;
-		}
-
-		if (age.value != 0 && height.value != 0 && weight.value != 0) {
-			calcButton.disabled = false;
-		} else {
-			calcButton.disabled = true;
-		}
-
+        resetButton.disabled = (age.value != 0 || height.value != 0 || weight.value != 0) ? false : true;
+        calcButton.disabled = (age.value != 0 && height.value != 0 && weight.value != 0) ? false : true;
 	})
 });
 
@@ -67,15 +57,10 @@ calcButton.addEventListener('click', (evt) => {
 
 resetButton.addEventListener('click', () => {
     male.checked = true;
-    female.checked = false;
     age.value = '';
     height.value = '';
     weight.value = '';
+    calcButton.disabled = true;
     activities.querySelector('#activity-minimal').checked = true;
-    activities.querySelector('#activity-low').checked = false;
-    activities.querySelector('#activity-medium').checked = false;
-    activities.querySelector('#activity-high').checked = false;
-    activities.querySelector('#activity-maximal').checked = false;
     result.classList.add('counter__result--hidden');
-    currentState();
 });
