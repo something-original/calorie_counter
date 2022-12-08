@@ -1,13 +1,14 @@
 {
   "type": "module",
   "name": "calorie-counter",
-  "version": "26.0.0",
+  "version": "1.0.0",
+  "main": "script.js",
   "devDependencies": {
     "browser-sync": "2.27.10",
     "eslint": "8.15.0",
     "eslint-config-htmlacademy": "5.1.2"
   },
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "esm": "^3.2.25"
   },
