@@ -3,7 +3,7 @@ const female = document.querySelector('#gender-female');
 const age = document.querySelector('#age');
 const height = document.querySelector('#height');
 const weight = document.querySelector('#weight');
-const inputText = document.querySelectorAll('input[type="text"]');
+const inputFields = document.querySelectorAll('input[type="text"]');
 const activities = document.querySelector('.radios-group');
 const calcButton = document.querySelector('.form__submit-button');
 const resetButton = document.querySelector('.form__reset-button');
@@ -12,9 +12,9 @@ const caloriesNorm = result.querySelector('#calories-norm');
 const caloriesMinimal = result.querySelector('#calories-minimal');
 const caloriesMaximal = result.querySelector('#calories-maximal');
 
-var activityCoeff = 1.2;
+let activityCoeff = 1.2;
 
-inputText.forEach(input => {
+inputFields.forEach(input => {
 	input.addEventListener('change', () => {
 		if (age.value != 0 || height.value != 0 || weight.value != 0) {
 			resetButton.disabled = false;
@@ -51,18 +51,18 @@ activities.addEventListener('change', (evt) => {
     }
 });
 
-const getCaloriesNorm = () => {
+const countNorm = () => {
     const temp = male.checked ? 5 : -161;
     return Math.ceil(activityCoeff * (10 * weight.value + 6.25 * height.value - 5 * age.value + temp));
 }
 
 calcButton.addEventListener('click', (evt) => {
     evt.preventDefault();
-    const norm = getCaloriesNorm();
+    const norm = countNorm();
     result.classList.remove('counter__result--hidden');
     caloriesNorm.textContent = norm;
-    caloriesMinimal.textContent = Math.ceil(norm - norm * 0.15);
-    caloriesMaximal.textContent = Math.ceil(norm + norm * 0.15);
+    caloriesMinimal.textContent = Math.ceil(norm * 0.85);
+    caloriesMaximal.textContent = Math.ceil(norm * 1.15);
 });
 
 resetButton.addEventListener('click', () => {
